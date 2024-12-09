@@ -52,40 +52,34 @@
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                     {{__("university.create")}}
                     </button>
-              <table id="example2" class="table table-bordered table-hover">
-                <thead>
-                <tr>
-                  <th>{{__("faculty.name")}}</th>
-                  <th>{{__("faculty.note")}}</th>
-                  <th>{{__("faculty.process")}}</th>
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                        <th>{{__("faculty.name")}}</th>
+                        <th>{{__("faculty.note")}}</th>
+                        <th>{{__("faculty.process")}}</th>
 
-                </tr>
-                </thead>
-                <tbody>
-                    @foreach ($faculties as $faculty)
-                <tr>
-                     @if (LaravelLocalization::getCurrentLocale() === 'ar')
-                        <td>{{ $faculty->name['ar'] }}</td>
-                    @else
-                        <td>{{ $faculty->name['en'] }}</td>
-                    @endif
-                  <td> {{$faculty->note}}</td>
-                  <td>
-                    <button type="button" class="btn  btn-outline-success btn-sm"data-toggle="modal" data-target="#exampleModal{{ $faculty->id }}" data-id="{{ $faculty->id }}">Edit</button>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($faculties as $faculty)
+                                <tr>
+                                <td>{{ $faculty->name[LaravelLocalization::getCurrentLocale()] }}</td>
+                                <td> {{$faculty->note}}</td>
+                                <td>
+                                    <button type="button" class="btn  btn-outline-success btn-sm"data-toggle="modal" data-target="#exampleModal{{ $faculty->id }}" data-id="{{ $faculty->id }}">Edit</button>
 
-                    <form action="{{ route('faculty.destroy', $faculty->id) }}"  onsubmit="return confirm('Are you sure you want to delete this faculty?');" method="POST" style="display:inline-block;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-outline-danger btn-sm" >Delete</button>
-                    </form>
-                    </td>
+                                    <form action="{{ route('faculty.destroy', $faculty->id) }}"  onsubmit="return confirm('Are you sure you want to delete this faculty?');" method="POST" style="display:inline-block;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-outline-danger btn-sm" >Delete</button>
+                                    </form>
+                                    </td>
 
-                </tr>
-                @include('pages.faculity.edit')
-            @endforeach
-
-
-              </table>
+                                </tr>
+                                @include('pages.faculity.edit')
+                            @endforeach
+                    </table>
             </div>
             <!-- /.card-body -->
           </div>

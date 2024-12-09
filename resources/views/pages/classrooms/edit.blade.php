@@ -25,12 +25,7 @@
             <select class="form-control" name="faculty_id" id="faculty_id">
                 <option value="">---</option>
                 @foreach ($faculties as $faculty)
-                    @if (LaravelLocalization::getCurrentLocale() === 'ar')
-                        <option value="{{$faculty->id}}" @if($faculty->id==$classroom->faculties->id) selected @endif >{{ $faculty->name['ar'] }}</option>
-                    @else
-                        <option value="{{$faculty->id}}" @if($faculty->id==$classroom->faculties->id) selected @endif >{{ $faculty->name['en'] }}</option>
-                    @endif
-                        </option>
+                        <option value="{{$faculty->id}}" @if($faculty->id==$classroom->faculties->id) selected @endif >{{ $faculty->name[LaravelLocalization::getCurrentLocale()] }}</option>
                 @endforeach
             </select>
           </div>

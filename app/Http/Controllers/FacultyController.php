@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Faculty;
+use App\Models\Classroom;
 use Illuminate\Http\Request;
 
 class FacultyController extends Controller
@@ -93,5 +94,11 @@ class FacultyController extends Controller
 
         // Redirect back with a success message
         return redirect()->back()->with('success', 'Faculty deleted successfully.');
+    }
+
+    public function getClassrooms($id)
+    {
+        $classrooms = Classroom::where('faculty_id', $id)->get();
+        return response()->json($classrooms);
     }
 }

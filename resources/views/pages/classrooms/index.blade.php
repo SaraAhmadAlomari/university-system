@@ -64,19 +64,9 @@
                 <tbody>
                     @foreach ($classrooms as $classroom)
                                 <tr>
-                                    @if (LaravelLocalization::getCurrentLocale() === 'ar')
-                                        <td>{{ $classroom->name['ar'] }}</td>
-                                    @else
-                                        <td>{{ $classroom->name['en'] }}</td>
-                                    @endif
-
+                                <td>{{ $classroom->name[LaravelLocalization::getCurrentLocale()] }}</td>
                                 <td>
-                                    @if (LaravelLocalization::getCurrentLocale() === 'ar')
-                                        {{$classroom->faculties->name['ar']}}
-                                    @else
-                                        {{$classroom->faculties->name['en']}}
-                                    @endif
-
+                                    {{$classroom->faculties->name[LaravelLocalization::getCurrentLocale()]}}
                                 </td>
                                 <td>
                                     <button type="button" class="btn  btn-outline-success btn-sm"data-toggle="modal" data-target="#exampleModal{{ $classroom->id }}" data-id="{{ $classroom->id }}">Edit</button>

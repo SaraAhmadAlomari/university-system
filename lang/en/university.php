@@ -14,8 +14,8 @@ return
         'classrooms'=> 'Classrooms',
         'show_classrooms'=> 'Show classrooms',
         'faculty'=> 'Faculty',
-        ''=> '',
-        ''=> '',
+        'section'=> 'Sections',
+        'show_section'=> 'Show Sections',
         ''=> '',
     ];
 

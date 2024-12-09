@@ -3,19 +3,9 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\ClassroomController;
+use App\Http\Controllers\SectionController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/', function () {
     return view('auth.login');
@@ -35,6 +25,9 @@ Route::group(
 
             Route::resource('faculty', FacultyController::class);
             Route::resource('classroom', ClassroomController::class);
+            Route::resource('section', SectionController::class);
+            //get classrooms 
+            Route::get('/faculty/{id}/classrooms', [FacultyController::class, 'getClassrooms']);
 
 
 
