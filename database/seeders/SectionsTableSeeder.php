@@ -16,7 +16,10 @@ class SectionsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('sections')->delete();
+        // Reset the auto-increment value to 1
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
+        DB::table('sections')->truncate(); // Clears table data and resets auto-increment
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
         $sections = [
             ['en' => 'Department of Civil Engineering', 'ar' => 'قسم الهندسة المدنية'],
             ['en' => 'Department of Mechanical Engineering', 'ar' => 'قسم الهندسة الميكانيكية'],
@@ -25,7 +28,7 @@ class SectionsTableSeeder extends Seeder
 
         ];
         foreach ($sections as $section) {
-            Section::create(['name' => $section, 'status'=>1,'faculty_id' => 28, 'classroom_id'=>7]);
+            Section::create(['name' => $section, 'status'=>1,'faculty_id' => 1]);
         }
     }
 }

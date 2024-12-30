@@ -16,15 +16,19 @@ class ClassroomsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('classrooms')->delete();
+        // Reset the auto-increment value to 1
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
+        DB::table('classrooms')->truncate(); // Clears table data and resets auto-increment
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
+
         $classrooms = [
-            ['en' => 'Room 101', 'ar' => 'صف 101'],
-            ['en' => 'Lab 3', 'ar' => 'مختبر 3'],
-            ['en' => 'Lecture Hall A', 'ar' => 'قاعة المحاضرات أ'],
+            ['en' => 'Engineering Mechanics', 'ar' => 'الميكانيكا الهندسية'],
+            ['en' => 'Soil Mechanics', 'ar' => 'ميكانيكا التربة'],
+            ['en' => 'Strength of Materials', 'ar' => 'مقاومة المواد '],
 
         ];
         foreach ($classrooms as $classroom) {
-            Classroom::create(['name' => $classroom, 'faculty_id'=>28]);
+            Classroom::create(['name' => $classroom, 'faculty_id'=>1, 'section_id' => 1]);
         }
     }
 }

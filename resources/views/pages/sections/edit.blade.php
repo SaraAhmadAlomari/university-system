@@ -29,14 +29,6 @@
                 @endforeach
             </select>
           </div>
-
-          <div class="form-group">
-            <label for="classroom_id" class="col-form-label">{{__("section.classroom")}}</label>
-            <select class="form-control classroom-dropdown" name="classroom_id" id="classroom_id_{{$section->id}}" data-group="{{$section->id}}">
-                <option value="">---</option>
-                <option value="{{$section->classrooms->id}}"selected>{{$section->classrooms->name[LaravelLocalization::getCurrentLocale()]}}</option>
-            </select>
-          </div>
           <div class="form-group">
             <label for="status" class="col-form-label">{{__("section.status")}}</label>
             <select class="form-control" name="status" id="status">

@@ -29,12 +29,6 @@
           </div>
 
           <div class="form-group">
-            <label for="classroom_id" class="col-form-label">{{__("section.classroom")}}</label>
-            <select class="form-control" name="classroom_id" id="classroom_id">
-                <option value="">---</option>
-            </select>
-          </div>
-          <div class="form-group">
             <label for="status" class="col-form-label">{{__("section.status")}}</label>
             <select class="form-control" name="status" id="status">
                 <option value="">---</option>

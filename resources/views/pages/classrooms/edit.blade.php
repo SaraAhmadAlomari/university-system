@@ -22,10 +22,19 @@
           </div>
              <div class="form-group">
             <label for="faculty_id" class="col-form-label">{{__("university.faculty")}}</label>
-            <select class="form-control" name="faculty_id" id="faculty_id">
+            <select class="form-control" name="faculty_id" id="faculty_id{{$classroom->id}}">
                 <option value="">---</option>
                 @foreach ($faculties as $faculty)
                         <option value="{{$faculty->id}}" @if($faculty->id==$classroom->faculties->id) selected @endif >{{ $faculty->name[LaravelLocalization::getCurrentLocale()] }}</option>
+                @endforeach
+            </select>
+          </div>
+             <div class="form-group">
+            <label for="section_id" class="col-form-label">{{__("university.section")}}</label>
+            <select class="form-control" name="section_id" id="section_id{{$classroom->id}}">
+                <option value="">---</option>
+                @foreach ($sections as $section)
+                    <option value="{{$section->id}}" @if($section->id==$classroom->sections->id) selected @endif >{{ $section->name[LaravelLocalization::getCurrentLocale()] }}</option>
                 @endforeach
             </select>
           </div>

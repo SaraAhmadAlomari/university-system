@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 use App\Models\Section;
 use App\Models\Faculty;
-use App\Models\Classroom;
 use Illuminate\Http\Request;
 
 class SectionController extends Controller
@@ -16,7 +15,6 @@ class SectionController extends Controller
     public function index()
     {
         $data['faculties'] = Faculty::get();
-        $data['classrooms'] = Classroom::get();
         $data['sections'] = Section::get();
         return view('pages.sections.index', $data);
     }
@@ -34,7 +32,6 @@ class SectionController extends Controller
                 'en_name' => 'required|string|max:255',
                 'ar_name' => 'required|string|max:255',
                 'faculty_id' => 'required',
-                'classroom_id' => 'required',
                 'status' => 'required',
             ]);
             $section = new Section();
@@ -43,7 +40,6 @@ class SectionController extends Controller
                 'ar' => $validated['ar_name'],
             ];
             $section->faculty_id = $validated['faculty_id'];
-            $section->classroom_id = $validated['classroom_id'];
             $section->status = $validated['status'];
             $section->save();
             // Redirect back with a success message
@@ -69,7 +65,6 @@ class SectionController extends Controller
                 'en_name' => 'required|string|max:255',
                 'ar_name' => 'required|string|max:255',
                 'faculty_id' => 'required',
-                'classroom_id' => 'required',
                 'status' => 'required',
             ]);
             $section =Section::findOrFail($id);
@@ -78,7 +73,6 @@ class SectionController extends Controller
                 'ar' => $validated['ar_name'],
             ];
             $section->faculty_id = $validated['faculty_id'];
-            $section->classroom_id = $validated['classroom_id'];
             $section->status = $validated['status'];
             $section->save();
             // Redirect back with a success message
@@ -100,4 +94,11 @@ class SectionController extends Controller
         // Redirect back with a success message
         return redirect()->back()->with('success', 'Section deleted successfully.');
     }
+
+    public function getSectionsByFaculty($facultyId)
+    {
+        $sections = Section::where('faculty_id', $facultyId)->get(['id', 'name']);
+        return response()->json(['sections' => $sections]);
+    }
+
 }

@@ -1,0 +1,32 @@
+<?php
+
+return
+    [
+        'parents'=>'Parents',
+        'email' => 'Email',
+        'add_parent' => 'Add new parent',
+        'Phone' => 'Phone',
+        'f_name' => 'First name',
+        'en_f_name' => 'English first name',
+        'ar_f_name' => 'Arabic First name',
+        'l_name' => 'Last name',
+        'en_l_name' => 'English last name',
+        'ar_l_name' => 'Arabic last name',
+        'Address' => 'Address',
+        'en_Address' => 'English address',
+        'ar_Address' => 'Arabic address',
+        'close'=>'Close',
+        'edit'=> 'edit',
+        'process' => 'Processes',
+        'Relegion' => 'Relegion',
+        'nationality' => 'Nationality',
+        'gender' => 'Gender',
+        'relation' => 'Relation',
+        'en_relation' => 'English relation',
+        'ar_relation' => 'Arabic relation',
+        'father' => 'Father',
+        'mother' => 'Mother',
+        ''=>'',
+        ''=>'',
+        ''=>'',
+    ];

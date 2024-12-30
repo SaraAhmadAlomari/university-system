@@ -24,7 +24,7 @@ class ReligionsTableSeeder extends Seeder
                 ['en' => 'Other', 'ar' => 'أخرى'],
             ];
         foreach ($religions as $religion) {
-            Religion::create(['name' => $religions]);
+            Religion::create(['name' => $religion]);
         }
     }
 }

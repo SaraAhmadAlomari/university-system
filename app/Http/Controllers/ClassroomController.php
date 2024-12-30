@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Faculty;
 use App\Models\Classroom;
+use App\Models\Section;
 use Illuminate\Http\Request;
 
 class ClassroomController extends Controller
@@ -18,6 +19,7 @@ class ClassroomController extends Controller
 
         $data['faculties']= Faculty::get();
         $data['classrooms']= Classroom::get();
+        $data['sections']= Section::get();
         return view('pages.classrooms.index',$data);
     }
 
@@ -40,6 +42,7 @@ class ClassroomController extends Controller
                 'en_name' => 'required|string|max:255',
                 'ar_name' => 'required|string|max:255',
                 'faculty_id' => 'required',
+                'section_id' => 'required',
             ]);
             $classroom = new Classroom();
             $classroom->name = [
@@ -47,6 +50,7 @@ class ClassroomController extends Controller
                 'ar' => $validated['ar_name'],
             ];
             $classroom->faculty_id = $validated['faculty_id'];
+            $classroom->section_id = $validated['section_id'];
             $classroom->save();
             // Redirect back with a success message
             return redirect()->back()->with('success', 'Classroom created successfully.');
@@ -71,6 +75,7 @@ class ClassroomController extends Controller
                 'en_name' => 'required|string|max:255',
                 'ar_name' => 'required|string|max:255',
                 'faculty_id' => 'required',
+                'section_id' => 'required',
             ]);
             $classroom =Classroom::findOrFail($id);
             $classroom->name = [
@@ -78,6 +83,7 @@ class ClassroomController extends Controller
                 'ar' => $validated['ar_name'],
             ];
             $classroom->faculty_id = $validated['faculty_id'];
+            $classroom->section_id = $validated['section_id'];
             $classroom->save();
             // Redirect back with a success message
             return redirect()->back()->with('success', 'Classroom edited successfully.');

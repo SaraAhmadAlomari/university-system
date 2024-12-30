@@ -70,7 +70,6 @@
                                             <thead>
                                             <tr>
                                             <th>{{__("section.name")}}</th>
-                                            <th>{{__("section.classroom")}}</th>
                                             <th>{{__("section.status")}}</th>
                                             <th>{{__("faculty.process")}}</th>
                                             </tr>
@@ -79,12 +78,11 @@
                                                 @foreach ($sections->where('faculty_id', $faculty->id) as $section)
                                                     <tr>
                                                     <td>{{ $section->name[LaravelLocalization::getCurrentLocale()] }}</td>
-                                                    <td> {{$section->classrooms->name[LaravelLocalization::getCurrentLocale()]}}</td>
                                                     <td> {{$section->status}}</td>
                                                     <td>
                                                         <button type="button" class="btn  btn-outline-success btn-sm"data-toggle="modal" data-target="#exampleModal{{ $section->id }}" data-id="{{ $section->id }}">Edit</button>
 
-                                                        <form action="{{ route('section.destroy', $section->id) }}"  onsubmit="return confirm('Are you sure you want to delete this section?');" method="POST" style="display:inline-block;">
+                                                        <form action="{{ route('section.destroy', $section->id) }}"  onsubmit="return confirm('Are you sure you want to delete this Classroom?');" method="POST" style="display:inline-block;">
                                                                 @csrf
                                                                 @method('DELETE')
                                                                 <button type="submit" class="btn btn-outline-danger btn-sm" >Delete</button>

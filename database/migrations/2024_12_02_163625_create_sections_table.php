@@ -23,10 +23,6 @@ return new class extends Migration
             ->onDelete('cascade')
             ->onUpdate('cascade');
 
-            $table->foreignId('classroom_id')
-            ->constrained('classrooms')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');
 
             $table->timestamps();
         });

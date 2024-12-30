@@ -13,9 +13,12 @@ class Classroom extends Model
     protected $casts = [
         'name' => 'array', // Cast 'name' to an array
     ];
-    protected $fillable = ['name', 'faculty_id'];
+    protected $fillable = ['name', 'faculty_id', 'section_id'];
 
     public function faculties(){
         return $this->belongsTo(Faculty::class, 'faculty_id');
+    }
+    public function sections(){
+        return $this->belongsTo(Section::class, 'section_id');
     }
 }

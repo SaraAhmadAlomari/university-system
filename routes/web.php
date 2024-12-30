@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\SectionController;
+use App\Http\Controllers\DoctorController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -26,8 +27,15 @@ Route::group(
             Route::resource('faculty', FacultyController::class);
             Route::resource('classroom', ClassroomController::class);
             Route::resource('section', SectionController::class);
-            //get classrooms 
+            //get classrooms
             Route::get('/faculty/{id}/classrooms', [FacultyController::class, 'getClassrooms']);
+
+            Route::get('parents', function () {
+                return view('parents');
+            });
+
+            Route::resource('doctor', DoctorController::class);
+            Route::get('/get-sections/{facultyId}', [SectionController::class, 'getSectionsByFaculty']);
 
 
 

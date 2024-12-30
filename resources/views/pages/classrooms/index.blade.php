@@ -57,6 +57,7 @@
                 <tr>
                   <th>{{__("faculty.name")}}</th>
                   <th>{{__("university.faculty")}}</th>
+                  <th>{{__("university.section")}}</th>
                   <th>{{__("faculty.process")}}</th>
 
                 </tr>
@@ -67,6 +68,9 @@
                                 <td>{{ $classroom->name[LaravelLocalization::getCurrentLocale()] }}</td>
                                 <td>
                                     {{$classroom->faculties->name[LaravelLocalization::getCurrentLocale()]}}
+                                </td>
+                                <td>
+                                    {{$classroom->sections->name[LaravelLocalization::getCurrentLocale()]}}
                                 </td>
                                 <td>
                                     <button type="button" class="btn  btn-outline-success btn-sm"data-toggle="modal" data-target="#exampleModal{{ $classroom->id }}" data-id="{{ $classroom->id }}">Edit</button>
@@ -90,7 +94,6 @@
           <!-- /.card -->
 
         <!-- /.col -->
-
     </div>
     <!-- /.content -->
 
@@ -119,6 +122,43 @@
     });
   });
 </script>
+
+<script>
+    $(document).ready(function() {
+        var currentLocale = '{{ LaravelLocalization::getCurrentLocale() }}';
+        // Handle faculty change for edit form (or other forms with dynamic IDs)
+        $('[id^="faculty_id"]').on('change', function() {
+            var facultyId = $(this).val();
+            var id = $(this).attr('id').replace('faculty_id', '');  // Extract dynamic ID
+            var sectionDropdown = $('#section_id' + id);
+            updateSectionDropdown(facultyId, sectionDropdown);
+        });
+
+        // Function to update the section dropdown
+        function updateSectionDropdown(facultyId, sectionDropdown) {
+            // Clear the section dropdown
+            sectionDropdown.empty().append('<option value="">---</option>');
+
+            if (facultyId) {
+                // Fetch sections via AJAX
+                $.ajax({
+                    url: '/get-sections/' + facultyId, // Backend route
+                    type: 'GET',
+                    success: function(data) {
+                        // Populate the section dropdown
+                        data.sections.forEach(function(section) {
+                            sectionDropdown.append('<option value="' + section.id + '">' + section.name[currentLocale] + '</option>');
+                        });
+                    },
+                    error: function() {
+                        alert('Error fetching sections.');
+                    }
+                });
+            }
+        }
+    });
+</script>
+
 
 @endsection
 

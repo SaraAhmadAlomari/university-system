@@ -19,8 +19,4 @@ class Section extends Model
         return $this->belongsTo(Faculty::class, 'faculty_id');
     }
 
-    public function classrooms()
-    {
-        return $this->belongsTo(Classroom::class, 'classroom_id');
-    }
 }

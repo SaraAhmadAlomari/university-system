@@ -16,7 +16,11 @@ class FacultiesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('faculties')->delete();
+        // Reset the auto-increment value to 1
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
+        DB::table('faculties')->truncate(); // Clears table data and resets auto-increment
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
+
         $faculties=[
             ['en' => 'Faculty of Engineering', 'ar' => 'كلية الهندسة'],
             ['en' => 'Faculty of Medicine', 'ar' => 'كلية الطب'],

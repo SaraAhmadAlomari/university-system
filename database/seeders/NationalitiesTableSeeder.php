@@ -17,7 +17,7 @@ class NationalitiesTableSeeder extends Seeder
     public function run()
     {
         DB::table('nationalities')->delete();
-        $nationalities = [
+        $nationalities =[
                 ['en' => 'Egyptian', 'ar' => 'مصري'],
                 ['en' => 'Saudi', 'ar' => 'سعودي'],
                 ['en' => 'Kuwaiti', 'ar' => 'كويتي'],

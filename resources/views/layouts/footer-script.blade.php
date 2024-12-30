@@ -19,7 +19,7 @@
 <script src="{{asset('assets/plugins/jquery-mapael/jquery.mapael.min.js')}}"></script>
 <script src="{{asset('assets/plugins/jquery-mapael/maps/world_countries.min.js')}}"></script>
 <!-- ChartJS -->
-<script src="{{asset('assets/plugins/chart.js/Chart.min.js')}}"></script>
+{{-- <script src="{{asset('assets/plugins/chart.js/Chart.min.js')}}"></script> --}}
 
 <!-- PAGE SCRIPTS -->
-<script src="{{asset('assets/dist/js/pages/dashboard2.js')}}"></script>
+{{-- <script src="{{asset('assets/dist/js/pages/dashboard2.js')}}"></script> --}}

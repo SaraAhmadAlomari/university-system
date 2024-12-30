@@ -22,4 +22,11 @@
         <link rel="stylesheet" href="{{asset('assets/dist/css/custom.css')}}">
     @endif
 
+<style>
+    .table-wrapper {
+    overflow-x: auto; /* Enables horizontal scrolling */
+    -webkit-overflow-scrolling: touch; /* For smooth scrolling on mobile devices */
+}
+</style>
+
 </head>
