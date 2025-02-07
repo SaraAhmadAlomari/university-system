@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-{{__("university.doctors")}}
+{{__("university.students")}}
 @endsection
 
 @section('style')
@@ -30,12 +30,12 @@
         <div class="row mb-2">
             <!-- Display error message -->
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">{{__("university.doctors")}} </h1>
+            <h1 class="m-0 text-dark">{{__("university.students")}} </h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">{{__("university.home")}}</a></li>
-              <li class="breadcrumb-item active">{{__("university.doctors")}} </li>
+              <li class="breadcrumb-item active">{{__("university.students")}} </li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -49,8 +49,8 @@
           <div class="card">
             <div class="card-body">
                 <!-- Button trigger modal -->
-                <a href="{{ route('doctor.create') }}" class="btn btn-primary">
-                    {{ __("university.add_doctor") }}
+                <a href="{{ route('student.create') }}" class="btn btn-primary">
+                    {{ __("university.add_student") }}
                 </a>
                 <div class="table-wrapper">
                 <table id="example2" class="table table-bordered table-hover">
@@ -64,38 +64,44 @@
                     <th>{{__("parents.nationality")}}</th>
                     <th>{{__("parents.gender")}}</th>
                     <th>{{__("doctor.religions")}}</th>
+                    <th>{{__("university.parents")}}</th>
                     <th>{{__("faculty.process")}}</th>
 
                     </tr>
                     </thead>
                     <tbody>
-                        @foreach ($doctors as $doctor)
+                        @foreach ($students as $student)
                                     <tr>
-                                    <td>{{ $doctor->name[LaravelLocalization::getCurrentLocale()] }}</td>
-                                    <td>{{ $doctor->email}}</td>
+                                    <td>{{ $student->name[LaravelLocalization::getCurrentLocale()] }}</td>
+                                    <td>{{ $student->email}}</td>
                                     <td>
-                                        {{$doctor->faculties->name[LaravelLocalization::getCurrentLocale()]}}
+                                        {{$student->faculties->name[LaravelLocalization::getCurrentLocale()]}}
                                     </td>
                                     <td>
-                                        @foreach ($doctor->classrooms as $classroom)
+                                        @foreach ($student->classrooms as $classroom)
                                             <p>{{ $classroom->name[LaravelLocalization::getCurrentLocale()] }}</p>
                                         @endforeach
                                     </td>
                                     <td>
-                                        {{$doctor->sections->name[LaravelLocalization::getCurrentLocale()]}}
+                                        {{$student->sections->name[LaravelLocalization::getCurrentLocale()]}}
                                     </td>
                                     <td>
-                                        {{$doctor->nationalies->name[LaravelLocalization::getCurrentLocale()]}}
+                                        {{$student->nationalies->name[LaravelLocalization::getCurrentLocale()]}}
                                     </td>
                                     <td>
-                                        {{$doctor->genders->name[LaravelLocalization::getCurrentLocale()]}}
+                                        {{$student->genders->name[LaravelLocalization::getCurrentLocale()]}}
                                     </td>
                                     <td>
-                                        {{$doctor->religions->name[LaravelLocalization::getCurrentLocale()]}}
+                                        {{$student->religions->name[LaravelLocalization::getCurrentLocale()]}}
                                     </td>
                                     <td>
-                                        <a href="{{ route('doctor.edit',$doctor->id) }}"><button type="button" class="btn  btn-outline-success btn-sm">Edit</button></a>
-                                        <form action="{{ route('doctor.destroy', $doctor->id) }}"  onsubmit="return confirm('Are you sure you want to delete this doctor?');" method="POST" style="display:inline-block;">
+                                        {{$student->parents->first_name[LaravelLocalization::getCurrentLocale()].' '.
+                                        $student->parents->last_name[LaravelLocalization::getCurrentLocale()]}}
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('student.show',$student->id) }}"><button type="button" class="btn  btn-outline-info btn-sm">Show</button></a>
+                                        <a href="{{ route('student.edit',$student->id) }}"><button type="button" class="btn  btn-outline-success btn-sm">Edit</button></a>
+                                        <form action="{{ route('student.destroy', $student->id) }}"  onsubmit="return confirm('Are you sure you want to delete this student?');" method="POST" style="display:inline-block;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-outline-danger btn-sm" >Delete</button>

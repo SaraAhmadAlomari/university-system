@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Doctor extends Model
+class Student extends Model
 {
     use HasFactory;
     protected $casts = [
@@ -18,13 +18,9 @@ class Doctor extends Model
         return $this->belongsTo(Faculty::class, 'faculty_id');
     }
 
-    // public function classrooms()
-    // {
-    //     return $this->belongsTo(Classroom::class,'classroom_id');
-    // }
     public function classrooms()
     {
-        return $this->belongsToMany(Classroom::class, 'doctor_classroom');
+        return $this->belongsToMany(Classroom::class, 'student_classroom');
     }
 
     public function sections()
@@ -41,7 +37,18 @@ class Doctor extends Model
     }
     public function religions()
     {
-        return $this->belongsTo(Religion::class, 'religion_id');
+        return $this->belongsTo(Religion::class, 'relegion_id');
     }
-
+    public function parents()
+    {
+        return $this->belongsTo(MyParent::class,'parent_id');
+    }
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'imageable');
+    }
+    public function grade()
+    {
+        return $this->belongsTo(Grade::class, 'current_grade');
+    }
 }

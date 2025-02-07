@@ -146,7 +146,7 @@
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label>{{ __("doctor.classroom") }}</label>
-                                        <select name="classroom_id" class="form-control select2" id="classroomSelect">
+                                        <select name="classroom_id[]" class="form-control select2" id="classroomSelect" multiple>
                                             <option value="">---</option>
                                             @foreach ($classrooms as $classroom)
                                                 <option value="{{ $classroom->id }}" data-section-id="{{ $classroom->section_id }}">{{ $classroom->name[LaravelLocalization::getCurrentLocale()] }}</option>

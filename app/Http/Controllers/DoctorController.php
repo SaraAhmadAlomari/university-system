@@ -42,6 +42,7 @@ class DoctorController extends Controller
             'faculty_id' => 'required',
             'section_id' => 'required',
             'classroom_id' => 'required',
+            'classroom_id.*' => 'exists:classrooms,id',
         ]);
 
         $doctor=new Doctor();
@@ -56,8 +57,10 @@ class DoctorController extends Controller
         $doctor->religion_id = $request->religion_id;
         $doctor->faculty_id = $request->faculty_id;
         $doctor->section_id = $request->section_id;
-        $doctor->classroom_id = $request->classroom_id;
         $doctor->save();
+
+        // Attach classrooms
+        $doctor->classrooms()->sync($request->classroom_id);
 
         // Redirect back with success message
         return redirect()->route('doctor.index')->with('success', __('Doctor created successfully.'));
@@ -90,6 +93,7 @@ class DoctorController extends Controller
                 'faculty_id' => 'required',
                 'section_id' => 'required',
                 'classroom_id' => 'required',
+                'classroom_id.*' => 'exists:classrooms,id',
             ]);
             // Find the existing faculty by ID
             $doctor = Doctor::findOrFail($id);
@@ -103,11 +107,14 @@ class DoctorController extends Controller
             $doctor->religion_id = $validated['religion_id'];
             $doctor->faculty_id = $validated['faculty_id'];
             $doctor->section_id = $validated['section_id'];
-            $doctor->classroom_id = $validated['classroom_id'];
             if ($request->filled('password')) { // Only update password if provided
                 $doctor->password = bcrypt($request->password);
             }
             $doctor->save();
+
+            // Attach classrooms
+            $doctor->classrooms()->sync($request->classroom_id);
+            
             // Redirect back with a success message
             return redirect()->back()->with('success', 'Doctor updated successfully.');
         } catch (\Exception $e) {

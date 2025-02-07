@@ -19,10 +19,20 @@ return
         'section'=> 'Sections',
         'parents'=> 'Parents',
         'doctors'=> 'Doctors',
+        'students'=> 'Students',
         'show_section'=> 'Show Sections',
         'show_parents'=> 'Show Parents',
         'show_doctors'=> 'Show doctors',
-        ''=> '',
+        'show_students'=> 'Show students',
+        'add_student'=> 'Add student',
+        'show_student'=> 'Show student',
+        'Attachments'=> 'Attachments',
+        'filename'=> 'Filename',
+        'created_at'=> 'Created at',
+        'process'=> 'process',
+    'image'=> 'Image',
+    'edit_student' => 'Edit student',
+    '' => '',
     ];
 
 ?>
